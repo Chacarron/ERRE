@@ -21,7 +21,7 @@ Game = new function() {
     
     
     
-    var KEY_CODES = { 13 :'enter' };
+    var KEY_CODES = { 13 :'enter' , 32 :'space' };
     this.keys = {};
 
     this.setupInput = function() {
@@ -57,7 +57,7 @@ Game = new function() {
 	    }
 	}
 
-	setTimeout(Game.loop,15);
+	setTimeout(Game.loop,20);
     };
     
     
@@ -96,7 +96,7 @@ SpriteSheet = new function() {
 }
 
 
-TitleScreen = function TitleScreen(title,callback) {
+TextScreen = function TextScreen(text,x,y,callback) {
     
     var up = false;
 
@@ -109,12 +109,19 @@ TitleScreen = function TitleScreen(title,callback) {
     
     this.draw = function(ctx) {
 	ctx.fillStyle = "#000000";
-	
-
 	ctx.font = "65px Verdana";
-	ctx.fillText(title,10,50);
+	ctx.fillText(text,x,y);
 
     };
 };
+
+
+
+
+
+
+
+
+
 
 

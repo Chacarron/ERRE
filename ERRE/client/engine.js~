@@ -21,7 +21,7 @@ Game = new function() {
     
     
     
-    var KEY_CODES = { 13 :'enter' };
+    var KEY_CODES = { 13 :'enter' , 32 :'space' };
     this.keys = {};
 
     this.setupInput = function() {
@@ -34,6 +34,7 @@ Game = new function() {
 	
 	$(window).keyup(function(event){
 	    if (KEY_CODES[event.which]) {
+		alert("PULSADO" + KEY_CODES[event.which]);
 		Game.keys[KEY_CODES[event.which]] = false;
 		return false;
 	    }
@@ -57,7 +58,7 @@ Game = new function() {
 	    }
 	}
 
-	setTimeout(Game.loop,15);
+	setTimeout(Game.loop,20);
     };
     
     
@@ -85,9 +86,9 @@ SpriteSheet = new function() {
 
  this.draw = function(ctx,sprite,x,y) {
  var img = this.map[sprite];
- if(!sprite.frames) sprite.frames = 0;
+ if(!img.frames) img.frames = 0;
     ctx.drawImage(this.image,
-    img.sx + sprite.frames * img.w,
+    img.sx + img.frames * img.w,
     img.sy,
     img.w, img.h,
     Math.floor(x), Math.floor(y),
@@ -96,7 +97,7 @@ SpriteSheet = new function() {
 }
 
 
-TitleScreen = function TitleScreen(title,callback) {
+TextScreen = function TextScreen(text,x,y,callback) {
     
     var up = false;
 
@@ -109,12 +110,19 @@ TitleScreen = function TitleScreen(title,callback) {
     
     this.draw = function(ctx) {
 	ctx.fillStyle = "#000000";
-	
-
 	ctx.font = "65px Verdana";
-	ctx.fillText(title,10,50);
+	ctx.fillText(text,x,y);
 
     };
 };
+
+
+
+
+
+
+
+
+
 
 
