@@ -16,7 +16,7 @@ Game = new function() {
     
     this.loop(); 
 
-	SpriteSheet.load (sprite_data,"sprites/tablero.jpg",callback);
+	SpriteSheet.load (sprite_data,"sprites/tablero.png",callback);
     };
     
     
@@ -83,11 +83,11 @@ SpriteSheet = new function() {
 
 
 
- this.draw = function(ctx,sprite,x,y,frame) {
+ this.draw = function(ctx,sprite,x,y) {
  var img = this.map[sprite];
- if(!frame) frame = 0;
+ if(!img.frames) img.frames = 0;
     ctx.drawImage(this.image,
-    img.sx + frame * img.w,
+    img.sx + img.frames * img.w,
     img.sy,
     img.w, img.h,
     Math.floor(x), Math.floor(y),
