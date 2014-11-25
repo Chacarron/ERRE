@@ -51,6 +51,14 @@ var sprites = {
 	ciudadrectaplus: { sx: 868*4/12, sy: 522*6/7, w: 868/12, h: 522/7, frames: 0}, 
 	ciudadrectaplus: { sx: 868*5/12, sy: 522*6/7, w: 868/12, h: 522/7, frames: 0}, 
 	monasteriocamino: { sx: 868*11/12, sy: 522*6/7, w: 868/12, h: 522/7, frames: 0}, 
+
+
+//COLORES
+
+	rojo: { sx: 868*2/12, sy: 522*6/7, w: 868/12, h: 522/7, frames: 0}, 
+	amarillo: { sx: 868*2/12, sy: 522*6/7, w: 868/12, h: 522/7, frames: 0}, 
+	azul: { sx: 868*2/12, sy: 522*6/7, w: 868/12, h: 522/7, frames: 0}, 
+	verde: { sx: 868*2/12, sy: 522*6/7, w: 868/12, h: 522/7, frames: 0}, 
     
 };
 

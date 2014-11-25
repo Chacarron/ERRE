@@ -76,7 +76,9 @@ var tablero = function(){
 	
         SpriteSheet.draw(Game.ctx,"caminocurva",868/12,522/7,0);
 	SpriteSheet.draw(Game.ctx,"monasterio",868/12,522*2/7,0);
-	SpriteSheet.draw(Game.ctx,"granciudadplus",868/12,522*3/7,0);
+	SpriteSheet.draw(Game.ctx,"finalrio2",868/12,522*3/7,0);
+	SpriteSheet.draw(Game.ctx,"esquinascaminociudad",868/12,522*4/7,0);
+	SpriteSheet.draw(Game.ctx,"granciudadcaminoplus",868/12,522*5/7,0);
 	
 	
     };	

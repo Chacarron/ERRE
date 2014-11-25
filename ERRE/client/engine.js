@@ -16,7 +16,7 @@ Game = new function() {
     
     this.loop(); 
 
-	SpriteSheet.load (sprite_data,callback);
+	SpriteSheet.load (sprite_data,"sprites/tablero.jpg",callback);
     };
     
     
@@ -74,11 +74,11 @@ SpriteSheet = new function() {
  this.map = { };
 
 
- this.load = function(spriteData,callback) {
+ this.load = function(spriteData,src,callback) {
     this.map = spriteData;
     this.image = new Image();
     this.image.onload = callback;
-    this.image.src = 'sprites/tablero.jpg';
+    this.image.src = src;
  };
 
 
