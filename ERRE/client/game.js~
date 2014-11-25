@@ -1,4 +1,4 @@
-var sprites = {
+var sprites_juego = {
         //FILA 1
 	caminocurva: {sx: 0, sy: 0, w: 868/12, h: 522/7, frames: 0},
 	caminorectociudad: {sx:868/12, sy: 0, w: 868/12, h: 522/7, frames: 0},
@@ -54,6 +54,10 @@ var sprites = {
     
 };
 
+
+var sprites_aldeanos = {
+
+};
 var startGame = function() {
     
     Game.setBoard(0,new TitleScreen("ERRE GAME(PULSE ENTER)",playGame));
