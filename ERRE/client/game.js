@@ -55,10 +55,10 @@ var sprites = {
 
 //COLORES
 
-	rojo: { sx: 868*2/12, sy: 522*6/7, w: 868/12, h: 522/7, frames: 0}, 
-	amarillo: { sx: 868*2/12, sy: 522*6/7, w: 868/12, h: 522/7, frames: 0}, 
-	azul: { sx: 868*2/12, sy: 522*6/7, w: 868/12, h: 522/7, frames: 0}, 
-	verde: { sx: 868*2/12, sy: 522*6/7, w: 868/12, h: 522/7, frames: 0}, 
+	rojo: { sx: 868, sy: 2, w: 28, h: 35, frames: 0}, 
+	verde: { sx: 868+30, sy: 2, w: 28, h: 35, frames: 0}, 
+	amarillo: { sx: 868+30*2, sy: 2, w: 28, h: 35, frames: 0}, 
+	azul: { sx: 868+30*3, sy: 2, w: 28, h: 35, frames: 0}, 
     
 };
 
@@ -87,6 +87,11 @@ var tablero = function(){
 	SpriteSheet.draw(Game.ctx,"finalrio2",868/12,522*3/7,0);
 	SpriteSheet.draw(Game.ctx,"esquinascaminociudad",868/12,522*4/7,0);
 	SpriteSheet.draw(Game.ctx,"granciudadcaminoplus",868/12,522*5/7,0);
+
+	SpriteSheet.draw(Game.ctx,"rojo",0,522*6/7,0);
+	SpriteSheet.draw(Game.ctx,"verde",200,522*6/7,0);
+	SpriteSheet.draw(Game.ctx,"amarillo",400,522*6/7,0);
+	SpriteSheet.draw(Game.ctx,"azul",600,522*6/7,0);
 	
 	
     };	
