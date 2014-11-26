@@ -28,8 +28,9 @@ var sprites = {
 
 	BackSide: { sx: 0, sy: 180, w: 90, h: 90, frames: 4}, 
 
-
-
+	num1: { sx: 0, sy: 360, w: 90, h: 90, frames: 1},
+	num2: { sx: 0, sy: 360, w: 90, h: 90, frames: 2},
+	num3: { sx: 0, sy: 360, w: 90, h: 90, frames: 3},
     
 };
 
@@ -59,9 +60,11 @@ var tablero = function(){
 
     this.draw = function(ctx) {
 		SpriteSheet.draw(Game.ctx,"Cruce3",0,90);
+		SpriteSheet.draw(Game.ctx,"num1",0,90);
 		SpriteSheet.draw(Game.ctx,"CiudadS",90,90);
+		SpriteSheet.draw(Game.ctx,"num2",90,90);
 		SpriteSheet.draw(Game.ctx,"CiudadF",180,90);
-		SpriteSheet.draw(Game.ctx,"MonGranja",270,90);
+		SpriteSheet.draw(Game.ctx,"num3",180,90);
 		SpriteSheet.draw(Game.ctx,"BackSide",600,270);
     };	
   
