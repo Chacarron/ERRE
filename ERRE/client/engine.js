@@ -2,21 +2,20 @@ Game = new function() {
 
     
     this.initialize = function(canvasElementId,sprite_data,callback) {
-	this.canvas = document.getElementById(canvasElementId)
+	this.canvas = document.getElementById(canvasElementId);
 	this.width = this.canvas.width;
-	 this.height= this.canvas.height;
+	this.height= this.canvas.height;
 
 	this.ctx = this.canvas.getContext && this.canvas.getContext('2d');
-	if(!this.ctx) { return alert("Please upgrade your browser to play"); }
+	if(!this.ctx){ 
+		return alert("Please upgrade your browser to play"); 
+    	}
 
-    
-    
-   
     this.setupInput();
-    
     this.loop(); 
 
-	SpriteSheet.load (sprite_data,"sprites/tablero.png",callback);
+    SpriteSheet.load (sprite_data,"sprites/tablero.png",callback);
+
     };
     
     
@@ -47,13 +46,15 @@ Game = new function() {
 
     this.loop = function() { 
 	
-	var dt = 15 / 1000;
-
 	
 	for(var i=0,len = boards.length;i<len;i++) {
 	    if(boards[i]) { 
-		boards[i].step(dt);
-		boards[i].draw(Game.ctx);
+		if(boards[i].step){
+			boards[i].step();
+		}
+		if(boards[i].draw){
+			boards[i].draw(Game.ctx);
+		}
 	    }
 	}
 
@@ -61,7 +62,9 @@ Game = new function() {
     };
     
     
-    this.setBoard = function(num,board) { boards[num] = board; };
+    this.setBoard = function(num,board){ 
+	boards[num] = board; 
+    };
 
 };
 
@@ -100,7 +103,7 @@ TextScreen = function TextScreen(text,x,y,callback) {
     
     var up = false;
 
-    this.step = function(dt) {
+    this.step = function() {
 	if(!Game.keys['enter']) up = true;
 	if(up && Game.keys['enter'] && callback) callback();
     };
@@ -115,6 +118,26 @@ TextScreen = function TextScreen(text,x,y,callback) {
     };
 };
 
+
+
+NewCard = function NewCard(sprites){
+	var ran = Math.floor((Math.random() * 24) + 1);
+	var sp;
+	var cont = 0;
+
+	for (key in sprites) {
+   		if(cont == ran){
+			sp = key;
+			break;
+		}
+		cont++;
+	}
+
+
+    this.draw = function(ctx) {
+		SpriteSheet.draw(Game.ctx,sp,0,270);
+    };
+};
 
 
 

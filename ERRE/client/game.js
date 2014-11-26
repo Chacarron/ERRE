@@ -38,49 +38,31 @@ var sprites = {
 var startGame = function() {
     
     Game.setBoard(0,new TextScreen("ERRE GAME(PULSE ENTER)",10,50,playGame));
-    
-    
+    Game.setBoard(2,new TextScreen("",0,0,card));
 }
 
 
 var playGame = function() {
-  Game.setBoard(2,new TextScreen("PULSE ESPACE",300,500));
-  Game.setBoard(0,new tablero(newCard));
+  Game.setBoard(1,new tablero());
 
 }
 
-var newCard = function() {
- 	Game.setBoard(1,new show());
+var card = function(){
+
+	Game.setBoard(3,new NewCard(sprites));
+
 }
+   
 
-
-var show = function(){
-
-    this.step = function(dt) {
-	
-    };
+var tablero = function(){
     
+
     this.draw = function(ctx) {
-	SpriteSheet.draw(Game.ctx,"CiudadR",200,450);
-    };	
-  
-}
-
-
-var tablero = function(callback){
-
-    this.step = function(dt) {
-	if(!Game.keys['space']) up = true;
-	if(up && Game.keys['space'] && callback) callback();
-    };
-    
-    this.draw = function(ctx) {
-	SpriteSheet.draw(Game.ctx,"Cruce3",0,90);
-        SpriteSheet.draw(Game.ctx,"CiudadS",90,90);
-	SpriteSheet.draw(Game.ctx,"CiudadF",180,90);
-	SpriteSheet.draw(Game.ctx,"MonGranja",270,90);
-	SpriteSheet.draw(Game.ctx,"BackSide",600,270);
-
+		SpriteSheet.draw(Game.ctx,"Cruce3",0,90);
+		SpriteSheet.draw(Game.ctx,"CiudadS",90,90);
+		SpriteSheet.draw(Game.ctx,"CiudadF",180,90);
+		SpriteSheet.draw(Game.ctx,"MonGranja",270,90);
+		SpriteSheet.draw(Game.ctx,"BackSide",600,270);
     };	
   
 }
