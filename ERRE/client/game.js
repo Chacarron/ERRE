@@ -44,7 +44,7 @@ var startGame = function() {
 
 
 var playGame = function() {
-  Game.setBoard(1,new tablero());
+  Game.setBoard(1,new Tablero());
 
 }
 
@@ -55,21 +55,23 @@ var card = function(){
 }
    
 
-var tablero = function(){
+var Tablero = function(){
     
-
-    this.draw = function(ctx) {
-		SpriteSheet.draw(Game.ctx,"Cruce3",0,90);
-		SpriteSheet.draw(Game.ctx,"num1",0,90);
-		SpriteSheet.draw(Game.ctx,"CiudadS",90,90);
-		SpriteSheet.draw(Game.ctx,"num2",90,90);
-		SpriteSheet.draw(Game.ctx,"CiudadF",180,90);
-		SpriteSheet.draw(Game.ctx,"num3",180,90);
-		SpriteSheet.draw(Game.ctx,"BackSide",600,270);
-    };	
   
 }
 
+Tablero.prototype.step = function() { };
+
+Tablero.prototype.draw = function(ctx) { 
+	SpriteSheet.draw(Game.ctx,"Cruce3",0,90);
+	SpriteSheet.draw(Game.ctx,"num1",0,90);
+	SpriteSheet.draw(Game.ctx,"CiudadS",90,90);
+	SpriteSheet.draw(Game.ctx,"num2",90,90);
+	SpriteSheet.draw(Game.ctx,"CiudadF",180,90);
+	SpriteSheet.draw(Game.ctx,"num3",180,90);
+	SpriteSheet.draw(Game.ctx,"BackSide",600,270);
+
+};
 
 
 
