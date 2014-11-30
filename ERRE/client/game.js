@@ -40,18 +40,112 @@ var startGame = function() {
     
     Game.setBoard(0,new TextScreen("ERRE GAME(PULSE ENTER)",10,50,playGame));
     Game.setBoard(2,new TextScreen("",0,0,card));
+  	Game.setBoard(1,new grids);
 }
 
 
 var playGame = function() {
   Game.setBoard(1,new tablero());
+}
 
+
+var grids = function() {
+	this.draw = function(ctx) {
+		ctx.save();
+		for(var x=0; x<=800; x=x+90){
+			ctx.moveTo(x,0);
+			ctx.lineTo(x,90);
+		};
+	
+		for(var y=0; y<=100; y=y+90){
+			ctx.moveTo(0,y);
+			ctx.lineTo(800,y);
+		};
+
+		ctx.strokeStyle ="#000";
+		ctx.stroke();
+		ctx.restore();
+	};
+	this.step= function(dt){ };
 }
 
 var card = function(){
 
-	Game.setBoard(3,new NewCard(sprites));
+	Game.setBoard(4,new NewCard(sprites));
 
+}
+
+var NewCard = function (sprites){
+	var ran = Math.floor((Math.random() * 24) + 1);
+	var sp;
+	var cont = 0;
+
+	for (key in sprites) {
+   		if(cont == ran){
+			sp = key;
+			break;
+		}
+		cont++;
+	}
+
+	this.x = 0;
+	this.y = 270;
+
+   this.step = function() {
+		/*if(!Game.keys['left']) up = true;
+		if(up && Game.keys['left']) 
+			{this.x += 50;}
+	    */
+	    var that = this;
+		 var mouseX = 0;
+		 var mouseY = 0;
+		 var oldX,oldY;
+		 var dentro = false;
+		//eventos del raton
+		 $('#game').mousedown(function(e) {    
+		  //se capturan coordenas del mouse
+		  mouseX = e.pageX;
+		  mouseY = e.pageY;	
+		if ( (mouseX>0) && (mouseX < 90)  &&
+	     (mouseY>270) && (mouseY < (270 + 90) ) ) 
+		   {
+		    // coordenas X,Y donde se hizo clic
+		    oldX = (mouseX - e.currentTarget.offsetLeft) - that.x;
+		    oldY = (mouseY - e.currentTarget.offsetTop) - that.y;
+	
+		    dentro = true;
+		    //alert("DENTRO! x:" + oldX + ", y:" + oldY );    
+		}
+	    });
+
+		 $('#game').mousemove(function(e) { 
+			  mouseX = e.pageX - e.currentTarget.offsetLeft;
+			  mouseY = e.pageY - e.currentTarget.offsetTop;
+			  //si existe un shape seleccionado
+			  if (dentro) {
+			   //se calcula la distancia del dezplazamiento
+			   var dx =  mouseX - oldX ;
+			   var dy =  mouseY- oldY ;   
+			   //se asignan nuevos valores
+			   //se actualiza coordenadas X,Y del shape seleccionado
+			   that.x = dx;
+			   that.y = dy;
+			   //alert("move! x:" + oldX + ", y:" + oldY );   
+			}
+			return false;
+		});
+
+		$('#game').mouseup(function(e) {    
+		  //se capturan coordenas del mouse	
+		    dentro = false;  
+		});
+		   
+    };					
+						
+
+    this.draw = function(ctx) {
+		SpriteSheet.draw(Game.ctx,sp,this.x,this.y);
+    };
 }
    
 
@@ -59,7 +153,7 @@ var tablero = function(){
     
 
     this.draw = function(ctx) {
-		SpriteSheet.draw(Game.ctx,"Cruce3",0,90);
+		SpriteSheet.draw(Game.ctx,"Cruce3",0,0);
 		SpriteSheet.draw(Game.ctx,"num1",0,90);
 		SpriteSheet.draw(Game.ctx,"CiudadS",90,90);
 		SpriteSheet.draw(Game.ctx,"num2",90,90);
