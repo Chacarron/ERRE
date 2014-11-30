@@ -236,10 +236,3 @@ var GameBoard = function() {
 	});
  };
 };
-
-
-
-
-
-
-
