@@ -138,7 +138,6 @@ TextScreen = function TextScreen(text,x,y,callback) {
 
 // La clase GameBoard ofrece la interfaz step(), draw() para que sus
 // elementos puedan ser mostrados desde el bucle principal del juego.
-
 var GameBoard = function() {
     var board = this;
     // Colección de objetos contenidos por este tablero
@@ -234,5 +233,7 @@ var GameBoard = function() {
 		return col ? this : false;
 	    }
 	});
- };
+    };
+
+
 };

@@ -34,7 +34,8 @@ var sprites = {
     
 };
 
-
+var img = new Image();
+img.src = "sprites/fondo.jpg";
 
 var startGame = function() {
     
@@ -157,13 +158,7 @@ var tablero = function(){
     
 
     this.draw = function(ctx) {
-		SpriteSheet.draw(Game.ctx,"Cruce3",0,0);
-		SpriteSheet.draw(Game.ctx,"num1",0,90);
-		SpriteSheet.draw(Game.ctx,"CiudadS",90,90);
-		SpriteSheet.draw(Game.ctx,"num2",90,90);
-		SpriteSheet.draw(Game.ctx,"CiudadF",180,90);
-		SpriteSheet.draw(Game.ctx,"num3",180,90);
-		SpriteSheet.draw(Game.ctx,"BackSide",600,270);
+	    ctx.drawImage(img, 0, 0, 540, 360); 
     };	
   
 }
