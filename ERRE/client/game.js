@@ -89,8 +89,8 @@ var NewCard = function (sprites){
 		cont++;
 	}
 
-	this.x = 0;
-	this.y = 270;
+	this.x = 600;
+	this.y = 20;
 
     this.draw = function(ctx) {
 		SpriteSheet.draw(Game.ctx,sp,this.x,this.y);
@@ -111,8 +111,8 @@ var NewCard = function (sprites){
 		  //se capturan coordenas del mouse
 		  mouseX = e.pageX;
 		  mouseY = e.pageY;	
-		if ( (mouseX>0) && (mouseX < 90)  &&
-	     (mouseY>270) && (mouseY < (270 + 90) ) ) 
+		if ( (mouseX>600 && (mouseX < 600 + 90)  &&
+	     (mouseY>20) && (mouseY < (20 + 90 ) ) ))
 		   {
 		    // coordenas X,Y donde se hizo clic
 		    oldX = (mouseX - e.currentTarget.offsetLeft) - that.x;
