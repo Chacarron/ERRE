@@ -40,7 +40,6 @@ var sprites = {
 var startGame = function() {
     
     Game.setBoard(0,new TextScreen("ERRE GAME(PULSE ENTER)",10,50,playGame));
-  
   	
 }
 
@@ -102,12 +101,10 @@ var NewCard = function (sprites){
 			}
 		}
 
-    };					
-						
-
+    };									
 
 }
-   
+	
 
 var tablero = function(){
 	for(i = 1;i<7;i++){
@@ -141,9 +138,6 @@ var points = function(number,name,x,y){
     };
 
 }
-
-
-
 
 
 $(function() {

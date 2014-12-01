@@ -40,7 +40,6 @@ var sprites = {
 var startGame = function() {
     
     Game.setBoard(0,new TextScreen("ERRE GAME(PULSE ENTER)",10,50,playGame));
-  
   	
 }
 
@@ -88,8 +87,6 @@ var NewCard = function (sprites){
 	    var that = this;	
 
 		window.onclick = function(e){
-			entro = true;
-
 			mX = e.pageX;
 			mY = e.pageY;
 
@@ -98,17 +95,16 @@ var NewCard = function (sprites){
 	
 			if((mX > 100) && (mX < 910) && (mY > 190) && (mY < 730) && (entro == false)){
 				console.log(cX + "," + cY);
+				entro = true;
 				that.x = cX * 90;
 				that.y = cY * 90;	
 			}
 		}
 
-    };					
-						
-
+    };									
 
 }
-   
+	
 
 var tablero = function(){
 	for(i = 1;i<7;i++){
@@ -143,6 +139,16 @@ var points = function(number,name,x,y){
 
 }
 
+=======
+    
+
+    this.draw = function(ctx) {
+	    ctx.drawImage(img, 0, 0, 540, 360); 
+    };	
+  
+}
+
+>>>>>>> 3ed6e09417574d27c200e9f65af50719188e5d68
 
 
 
