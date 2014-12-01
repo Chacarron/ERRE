@@ -39,27 +39,28 @@ var sprites = {
 var startGame = function() {
     
     Game.setBoard(0,new TextScreen("ERRE GAME(PULSE ENTER)",10,50,playGame));
-    Game.setBoard(2,new TextScreen("",0,0,card));
-  	Game.setBoard(1,new grids);
+    Game.setBoard(3,new TextScreen("",0,0,card));
+  	
 }
 
 
 var playGame = function() {
   Game.setBoard(1,new tablero());
+  Game.setBoard(2,new grids);
 }
 
 
 var grids = function() {
 	this.draw = function(ctx) {
 		ctx.save();
-		for(var x=0; x<=800; x=x+90){
+		for(var x=0; x<=600; x=x+90){
 			ctx.moveTo(x,0);
-			ctx.lineTo(x,90);
+			ctx.lineTo(x,360);
 		};
 	
-		for(var y=0; y<=100; y=y+90){
+		for(var y=0; y<=400; y=y+90){
 			ctx.moveTo(0,y);
-			ctx.lineTo(800,y);
+			ctx.lineTo(540,y);
 		};
 
 		ctx.strokeStyle ="#000";
@@ -90,6 +91,10 @@ var NewCard = function (sprites){
 
 	this.x = 0;
 	this.y = 270;
+
+    this.draw = function(ctx) {
+		SpriteSheet.draw(Game.ctx,sp,this.x,this.y);
+    };
 
    this.step = function() {
 		/*if(!Game.keys['left']) up = true;
@@ -125,15 +130,16 @@ var NewCard = function (sprites){
 			  if (dentro) {
 			   //se calcula la distancia del dezplazamiento
 			   var dx =  mouseX - oldX ;
-			   var dy =  mouseY- oldY ;   
+			   var dy =  mouseY - oldY ;   
 			   //se asignan nuevos valores
 			   //se actualiza coordenadas X,Y del shape seleccionado
 			   that.x = dx;
 			   that.y = dy;
-			   //alert("move! x:" + oldX + ", y:" + oldY );   
+			   //alert("move! x:" + oldX + ", y:" + oldY );
+			   //alert(this.x);   
 			}
-			return false;
 		});
+
 
 		$('#game').mouseup(function(e) {    
 		  //se capturan coordenas del mouse	
@@ -143,9 +149,7 @@ var NewCard = function (sprites){
     };					
 						
 
-    this.draw = function(ctx) {
-		SpriteSheet.draw(Game.ctx,sp,this.x,this.y);
-    };
+
 }
    
 
