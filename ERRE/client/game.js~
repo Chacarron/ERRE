@@ -25,6 +25,8 @@ var sprites = {
 	Cruce3: { sx: 0, sy: 90, w: 90, h: 90, frames: 9}, 
 	Cruce4: { sx: 0, sy: 90, w: 90, h: 90, frames: 8}, 
 
+	Fondo: { sx: 0, sy: 270, w: 90, h: 90, frames: 0}, 
+
 
 	BackSide: { sx: 0, sy: 180, w: 90, h: 90, frames: 4}, 
 
@@ -35,43 +37,112 @@ var sprites = {
 };
 
 
-
 var startGame = function() {
     
     Game.setBoard(0,new TextScreen("ERRE GAME(PULSE ENTER)",10,50,playGame));
-    Game.setBoard(2,new TextScreen("",0,0,card));
+  
+  	
 }
 
 
 var playGame = function() {
-  Game.setBoard(1,new Tablero());
-
+ 	tablero();
+	var p1 = new points(125,"ALBERTO",830,300);
+	var p2 = new points(300, "JONA",830,350);
+	var p3 = new points(500, "MORATA",830,400);
+	Game.setBoard(2,p1);
+	Game.setBoard(3,p2);
+	Game.setBoard(4,p3);
+	Game.setBoard(0,new TextScreen("",0,0,card));
 }
 
-var card = function(){
 
-	Game.setBoard(3,new NewCard(sprites));
+
+var card = function(){
+	Game.setBoard(1,new NewCard(sprites));
+}
+
+var NewCard = function (sprites){
+	var ran = Math.floor((Math.random() * 24) + 1);
+	var sp;
+	var cont = 0;
+
+	var entro = false;	
+
+	for (key in sprites) {
+   		if(cont == ran){
+			sp = key;
+			break;
+		}
+		cont++;
+	}
+
+	this.x = 850;
+	this.y = 530;
+
+    this.draw = function(ctx) {
+		SpriteSheet.draw(Game.ctx,sp,this.x,this.y);
+    };
+
+   this.step = function() {
+	    var that = this;	
+
+		window.onclick = function(e){
+			entro = true;
+
+			mX = e.pageX;
+			mY = e.pageY;
+
+			cX = Math.floor((mX-100)/90);
+			cY = Math.floor((mY-100)/90);
+	
+			if((mX > 100) && (mX < 910) && (mY > 190) && (mY < 730) && (entro == false)){
+				console.log(cX + "," + cY);
+				that.x = cX * 90;
+				that.y = cY * 90;	
+			}
+		}
+
+    };					
+						
+
 
 }
    
 
-var Tablero = function(){
-    
-  
+var tablero = function(){
+	for(i = 1;i<7;i++){
+		for(j = 0;j<9;j++){
+			SpriteSheet.draw(Game.ctx,"Fondo",j*90,i*90);	
+		}
+	}
 }
 
-Tablero.prototype.step = function() { };
 
-Tablero.prototype.draw = function(ctx) { 
-	SpriteSheet.draw(Game.ctx,"Cruce3",0,90);
-	SpriteSheet.draw(Game.ctx,"num1",0,90);
-	SpriteSheet.draw(Game.ctx,"CiudadS",90,90);
-	SpriteSheet.draw(Game.ctx,"num2",90,90);
-	SpriteSheet.draw(Game.ctx,"CiudadF",180,90);
-	SpriteSheet.draw(Game.ctx,"num3",180,90);
-	SpriteSheet.draw(Game.ctx,"BackSide",600,270);
+var points = function(number,name,x,y){
+	
+	var num = number;
+	var cont = 0;
 
-};
+	this.step = function() {
+			cont++;
+			if(cont == 100){
+				num += 1;
+				cont = 0;
+			}
+	};
+
+	this.draw = function(ctx) {
+		ctx.fillStyle = "white";
+		ctx.fillRect(x-2,y-20,200,50);
+
+		ctx.fillStyle = "#000000";
+		ctx.font = "20px Verdana";
+		ctx.fillText(name + ": " + num,x,y);
+    };
+
+}
+
 
 
 
