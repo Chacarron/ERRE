@@ -80,24 +80,28 @@ var NewCard = function (sprites){
 	this.y = 530;
 
     this.draw = function(ctx) {
-		SpriteSheet.draw(Game.ctx,sp,this.x,this.y);
+		SpriteSheet.draw(Game.ctx,sp,this.x,this.y,180);
     };
 
    this.step = function() {
 	    var that = this;	
 
-		window.onclick = function(e){
-			mX = e.pageX;
-			mY = e.pageY;
+		window.onmousedown = function(e){
+			if(e.which == 1){
+				mX = e.pageX;
+				mY = e.pageY;
 
-			cX = Math.floor((mX-100)/90);
-			cY = Math.floor((mY-100)/90);
+				cX = Math.floor((mX-100)/90);
+				cY = Math.floor((mY-100)/90);
 	
-			if((mX > 100) && (mX < 910) && (mY > 190) && (mY < 730) && (entro == false)){
-				console.log(cX + "," + cY);
-				entro = true;
-				that.x = cX * 90;
-				that.y = cY * 90;	
+				if((mX > 100) && (mX < 910) && (mY > 190) && (mY < 730) && (entro == false)){
+					console.log(cX + "," + cY);
+					entro = true;
+					that.x = cX * 90;
+					that.y = cY * 90;	
+				}
+			}else{
+				console.log("AA");
 			}
 		}
 
@@ -141,6 +145,7 @@ var points = function(number,name,x,y){
 
 
 $(function() {
+	document.oncontextmenu=new Function("return false");
     Game.initialize("game",sprites,startGame);
 });
 

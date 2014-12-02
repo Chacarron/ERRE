@@ -87,17 +87,17 @@ SpriteSheet = new function() {
 
 
 
- this.draw = function(ctx,sprite,x,y) {
- var img = this.map[sprite];
- if(!img.frames) img.frames = 0;
- 	ctx.save();
-    ctx.drawImage(this.image,
-    img.sx + img.frames * img.w,
-    img.sy,
-    img.w, img.h,
-    Math.floor(x), Math.floor(y),
-    img.w, img.h);
-    ctx.restore();
+ 	this.draw = function(ctx,sprite,x,y,grades) {
+	 	var img = this.map[sprite];
+	 	if(!img.frames) img.frames = 0;
+	 	ctx.save();
+		if(grades){ 
+			//ctx.translate(x,y);
+			//ctx.translate(img.w,img.h);
+			//ctx.rotate(grades*Math.PI/180);
+		}
+		ctx.drawImage(this.image,  img.sx + img.frames * img.w,   img.sy,img.w, img.h,Math.floor(x), Math.floor(y),  img.w, img.h);
+		ctx.restore();
     };
 }
 
