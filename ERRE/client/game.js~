@@ -65,7 +65,7 @@ var NewCard = function (sprites){
 	var ran = Math.floor((Math.random() * 24) + 1);
 	var sp;
 	var cont = 0;
-
+	var grade = 0;
 	var entro = false;	
 
 	for (key in sprites) {
@@ -80,7 +80,7 @@ var NewCard = function (sprites){
 	this.y = 530;
 
     this.draw = function(ctx) {
-		SpriteSheet.draw(Game.ctx,sp,this.x,this.y,180);
+		SpriteSheet.draw(Game.ctx,sp,this.x,this.y,grade);
     };
 
    this.step = function() {
@@ -101,7 +101,7 @@ var NewCard = function (sprites){
 					that.y = cY * 90;	
 				}
 			}else{
-				console.log("AA");
+				grade = grade + 90;
 			}
 		}
 

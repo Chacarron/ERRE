@@ -92,9 +92,10 @@ SpriteSheet = new function() {
 	 	if(!img.frames) img.frames = 0;
 	 	ctx.save();
 		if(grades){ 
-			//ctx.translate(x,y);
-			//ctx.translate(img.w,img.h);
-			//ctx.rotate(grades*Math.PI/180);
+			ctx.translate(x,y);
+			ctx.translate(img.w/2,img.h/2);
+			ctx.rotate(grades*Math.PI/180);
+			x=-45;y=-45;
 		}
 		ctx.drawImage(this.image,  img.sx + img.frames * img.w,   img.sy,img.w, img.h,Math.floor(x), Math.floor(y),  img.w, img.h);
 		ctx.restore();
