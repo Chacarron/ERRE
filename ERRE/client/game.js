@@ -29,8 +29,8 @@ var sprites = {
 
 	//aldeanos
 	BackSide: { sx: 0, sy:180, w: 90, h: 90, frames: 4},
-	AldeanoRojo: {sx:451, sy:180, w:35, h:30, frames : 0},
-	AldeanoAzul:{sx:451, sy:210, w:35, h:30, frames:0},
+	AldeanoRojo: {sx:451, sy:181, w:35, h:30, frames : 0},
+	AldeanoAzul:{sx:451, sy:211, w:35, h:30, frames:0},
 	AldeanoAmarillo:{sx:0, sy:180, w:90, h:90, frames:5},
 	//Numeros
 
@@ -78,7 +78,7 @@ var Ficha_Aldeano = function (aldeano,x,y){
 
 	
 	this.draw = function (ctx) {
-		SpriteSheet.draw(Game.ctx,aldeano,x,y);
+		SpriteSheet.drawAldeano(Game.ctx,aldeano,x,y);
 	};
 	
 	this.step = function(){

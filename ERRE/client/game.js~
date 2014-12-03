@@ -75,7 +75,7 @@ var Ficha_Aldeano = function (aldeano,x,y){
 
 	
 	this.draw = function (ctx) {
-		SpriteSheet.draw(Game.ctx,aldeano,x,y);
+		SpriteSheet.drawAldeano(Game.ctx,aldeano,x,y);
 	};
 	
 	this.step = function(){
