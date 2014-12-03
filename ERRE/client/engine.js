@@ -84,9 +84,14 @@ SpriteSheet = new function() {
     this.image.onload = callback;
     this.image.src = src;
  };
-
-
-
+//cambio
+	this.drawAldeano = function(ctx,sprite,x,y){
+		var img = this.map[sprite];
+		ctx.save();
+		ctx.drawImage(this.image,  img.sx + img.frames * img.w,   img.sy,img.w, img.h,Math.floor(x), Math.floor(y),  20, 20);
+		ctx.restore();
+	};
+//
  	this.draw = function(ctx,sprite,x,y,grades) {
 	 	var img = this.map[sprite];
 	 	if(!img.frames) img.frames = 0;
