@@ -54,7 +54,11 @@ var playGame = function() {
 	var p2 = new points(300, "JONA",830,350);
 	var p3 = new points(500, "MORATA",830,400);
 	var FichasR =new  Ficha_Aldeano("AldeanoRojo",830,100);
-	var FichasAz =new  Ficha_Aldeano("AldeanoAzul",870,100)
+	var FichasAz =new  Ficha_Aldeano("AldeanoAzul",870,100);
+	var alde = new Colocar_Aldeano(1,"AldeanoAzul",0,90);
+	var alde1 = new Colocar_Aldeano(2,"AldeanoRojo",0,90);
+	var alde2 = new Colocar_Aldeano(3,"AldeanoAzul",0,90);
+	var alde3 = new Colocar_Aldeano(4,"AldeanoRojo",0,90);
 	Game.setBoard(2,p1);
 	Game.setBoard(3,p2);
 	Game.setBoard(4,p3);
@@ -166,12 +170,30 @@ var points = function(number,name,x,y){
 }
 
 
-var Colocar_Aldeano = function Colocar_Aldeano(pos,x,y){
+var Colocar_Aldeano = function Colocar_Aldeano(pos,tipo_aldeano,x,y){
 
-	if(pos == 0)
-		SpriteSheet.draw(Game.ctx,"AldeanoRojo",x,y);	
-	else
-		SpriteSheet.draw(Game.ctx,"AldeanoRojo",x+60,y+60);	
+	switch(pos % 3){
+		case 1:
+			x = x;   
+			break;
+		case 2:
+		    x = x+30;
+		    break;
+		case 0:
+		    x = x+60;
+			break;
+	}
+
+	if(pos <= 3)
+		y = y;
+	else if(pos > 3 && pos <= 6)
+		y = y+30;
+	else if(pos > 6)
+		y = y+60;
+	
+	
+
+	SpriteSheet.draw(Game.ctx,tipo_aldeano,x,y);		
 }
 
 
