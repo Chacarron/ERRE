@@ -1,5 +1,5 @@
 var sprites = {
-        
+    //Sprites juego  
 	MonCamino: { sx: 0, sy: 90, w: 90, h: 90, frames: 2}, 
 	MonGranja: { sx: 0, sy: 90, w: 90, h: 90, frames: 3}, 
 	CiudadC: { sx: 0, sy: 0, w: 90, h: 90, frames: 0}, 
@@ -24,11 +24,15 @@ var sprites = {
 	Curva: { sx: 0, sy: 180, w: 90, h: 90, frames: 1}, 
 	Cruce3: { sx: 0, sy: 90, w: 90, h: 90, frames: 9}, 
 	Cruce4: { sx: 0, sy: 90, w: 90, h: 90, frames: 8}, 
-
+	//Fondo
 	Fondo: { sx: 0, sy: 270, w: 90, h: 90, frames: 0}, 
 
-
-	BackSide: { sx: 0, sy: 180, w: 90, h: 90, frames: 4}, 
+	//aldeanos
+	BackSide: { sx: 0, sy:180, w: 90, h: 90, frames: 4},
+	AldeanoRojo: {sx:451, sy:180, w:35, h:30, frames : 0},
+	AldeanoAzul:{sx:451, sy:210, w:35, h:30, frames:0},
+	AldeanoAmarillo:{sx:0, sy:180, w:90, h:90, frames:5},
+	//Numeros
 
 	num1: { sx: 0, sy: 360, w: 90, h: 90, frames: 1},
 	num2: { sx: 0, sy: 360, w: 90, h: 90, frames: 2},
@@ -49,9 +53,13 @@ var playGame = function() {
 	var p1 = new points(125,"ALBERTO",830,300);
 	var p2 = new points(300, "JONA",830,350);
 	var p3 = new points(500, "MORATA",830,400);
+	var FichasR =new  Ficha_Aldeano("AldeanoRojo",830,100);
+	var FichasAz =new  Ficha_Aldeano("AldeanoAzul",870,100)
 	Game.setBoard(2,p1);
 	Game.setBoard(3,p2);
 	Game.setBoard(4,p3);
+	Game.setBoard(5,FichasR);
+	Game.setBoard(6,FichasAz);
 	Game.setBoard(0,new TextScreen("",0,0,card));
 }
 
@@ -59,6 +67,20 @@ var playGame = function() {
 
 var card = function(){
 	Game.setBoard(1,new NewCard(sprites));
+}
+
+var Ficha_Aldeano = function (aldeano,x,y){
+
+
+	
+	this.draw = function (ctx) {
+		SpriteSheet.draw(Game.ctx,aldeano,x,y);
+	};
+	
+	this.step = function(){
+
+	};
+
 }
 
 var NewCard = function (sprites){
