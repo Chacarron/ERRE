@@ -124,3 +124,23 @@ TextScreen = function TextScreen(text,x,y,callback) {
 };
 
 
+
+
+function Colocar_Aldeano(array,img){
+
+	for(i = 0;i<array.length;i++){
+		
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+

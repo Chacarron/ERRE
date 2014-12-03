@@ -144,6 +144,15 @@ var points = function(number,name,x,y){
 }
 
 
+var Colocar_Aldeano = function Colocar_Aldeano(pos,x,y){
+
+	if(pos == 0)
+		SpriteSheet.draw(Game.ctx,"AldeanoRojo",x,y);	
+	else
+		SpriteSheet.draw(Game.ctx,"AldeanoRojo",x+60,y+60);	
+}
+
+
 $(function() {
 	document.oncontextmenu=new Function("return false");
     Game.initialize("game",sprites,startGame);
