@@ -49,28 +49,26 @@ var startGame = function() {
 
 
 var playGame = function() {
- 	tablero();
+ 	
+	var gb = new GameBoard();
 	var p1 = new points(125,"ALBERTO",830,300);
 	var p2 = new points(300, "JONA",830,350);
 	var p3 = new points(500, "MORATA",830,400);
 	var FichasR =new  Ficha_Aldeano("AldeanoRojo",830,100);
 	var FichasAz =new  Ficha_Aldeano("AldeanoAzul",870,100);
-	for(i=1;i<10;i++){
-		var alde = new Colocar_Aldeano(i,"AldeanoAzul",0,90);
-	}
-
-	Game.setBoard(2,p1);
-	Game.setBoard(3,p2);
-	Game.setBoard(4,p3);
-	Game.setBoard(5,FichasR);
-	Game.setBoard(6,FichasAz);
-	Game.setBoard(0,new TextScreen("",0,0,card));
+	
+	Game.setBoard(0,p1);
+	Game.setBoard(1,p2);
+	Game.setBoard(2,p3);
+	Game.setBoard(3,FichasR);
+	Game.setBoard(4,FichasAz);
+	Game.setBoard(5,gb);
+	Game.setBoard(6,new carta(card));
 }
 
 
-
 var card = function(){
-	Game.setBoard(1,new NewCard(sprites));
+	Game.setBoard(7,new NewCard());
 }
 
 var Ficha_Aldeano = function (aldeano,x,y){
@@ -78,7 +76,7 @@ var Ficha_Aldeano = function (aldeano,x,y){
 
 	
 	this.draw = function (ctx) {
-		SpriteSheet.drawAldeano(Game.ctx,aldeano,x,y);
+		SpriteSheet.draw(Game.ctx,aldeano,x,y,0,true);
 	};
 	
 	this.step = function(){
@@ -87,20 +85,25 @@ var Ficha_Aldeano = function (aldeano,x,y){
 
 }
 
-var NewCard = function (sprites){
-	var ran = Math.floor((Math.random() * 24) + 1);
+var NewCard = function (){
+
+
+	var ran = Math.floor((Math.random() * 23) + 1);
 	var sp;
 	var cont = 0;
+	var gb = Game.boards[5];
 	var grade = 0;
-	var entro = false;	
+	var entro = false;
 
+	
 	for (key in sprites) {
-   		if(cont == ran){
+		if(cont == ran){
 			sp = key;
 			break;
 		}
 		cont++;
 	}
+	
 
 	this.x = 850;
 	this.y = 530;
@@ -121,29 +124,27 @@ var NewCard = function (sprites){
 				cY = Math.floor((mY-100)/90);
 	
 				if((mX > 100) && (mX < 910) && (mY > 190) && (mY < 730) && (entro == false)){
-					console.log(cX + "," + cY);
-					entro = true;
-					that.x = cX * 90;
-					that.y = cY * 90;	
+
+					for(i = 0 ; i < gb.lista_fichas.length ; i++){
+						var f = gb.lista_fichas[i];
+						if( (f.x == cX*90+gb.scrollx*90) && (f.y == cY*90+gb.scrolly*90) && (f.paint == false)){
+							f.paint = true;
+							f.sprite = sp;
+							f.grade = grade;
+							entro = true;
+							Game.setBoard(7,new carta(card));
+						}
+					}
+						
 				}
 			}else{
 				grade = grade + 90;
 			}
 		}
-
     };									
 
 }
 	
-
-var tablero = function(){
-	for(i = 1;i<7;i++){
-		for(j = 0;j<9;j++){
-			SpriteSheet.draw(Game.ctx,"Fondo",j*90,i*90);	
-		}
-	}
-}
-
 
 var points = function(number,name,x,y){
 	
@@ -193,7 +194,7 @@ var Colocar_Aldeano = function Colocar_Aldeano(pos,tipo_aldeano,x,y){
 	
 	
 
-	SpriteSheet.drawAldeano(Game.ctx,tipo_aldeano,x,y);		
+	SpriteSheet.draw(Game.ctx,tipo_aldeano,x,y,0,true);		
 }
 
 
