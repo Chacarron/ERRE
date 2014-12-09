@@ -21,7 +21,7 @@ Game = new function() {
     
     
     
-    var KEY_CODES = { 13 :'enter' , 32 :'space', 37:'left', 39:'right', 38:'up', 40:'down' };
+    var KEY_CODES = { 13 :'enter' , 32 :'space', 37:'left', 39:'right', 38:'up', 40:'down',49:'1',50:'2',51:'3',52:'4',53:'5',54:'6',55:'7',56:'8',57:'9',};
     this.keys = {};
 
     this.setupInput = function() {
@@ -83,9 +83,8 @@ SpriteSheet = new function() {
     this.image.onload = callback;
     this.image.src = src;
  };
-//cambio
-	
-//
+
+
  	this.draw = function(ctx,sprite,x,y,grades,bool) {
 	 	var img = this.map[sprite];
 	 	if(!img.frames) img.frames = 0;
@@ -239,10 +238,14 @@ Ficha = function Ficha(x,y) {
 	this.grade = 0;
 	this.paint = false;
 	this.sprite = "Fondo";
-	
+	this.pos = 0;
+	this.spritea = "AldeanoRojo";
 
 	this.print = function(sx,sy) {
 			SpriteSheet.draw(Game.ctx,this.sprite,this.x-(sx*90),this.y-(sy*90),this.grade,false);
+			if(this.pos != 0){
+				Colocar_Aldeano(this.pos,this.spritea,this.x,this.y);
+			}
 	};
 
 }
@@ -287,6 +290,34 @@ carta = function carta(callback) {
 		SpriteSheet.draw(Game.ctx,"BackSide",this.x,this.y,0,false);
     };
 };
+
+
+
+Colocar_Aldeano = function Colocar_Aldeano(pos,tipo_aldeano,x,y){
+
+	switch(pos % 3){
+		case 1:
+			x = x;   
+			break;
+		case 2:
+		    x = x+30;
+		    break;
+		case 0:
+		    x = x+60;
+			break;
+	}
+
+	if(pos <= 3)
+		y = y;
+	else if(pos > 3 && pos <= 6)
+		y = y+30;
+	else if(pos > 6)
+		y = y+60;
+	
+	
+
+	SpriteSheet.draw(Game.ctx,tipo_aldeano,x,y,0,true);		
+}
 
 
 

@@ -51,39 +51,22 @@ var startGame = function() {
 var playGame = function() {
  	
 	var gb = new GameBoard();
-	var p1 = new points(125,"ALBERTO",830,300);
-	var p2 = new points(300, "JONA",830,350);
-	var p3 = new points(500, "MORATA",830,400);
-	var FichasR =new  Ficha_Aldeano("AldeanoRojo",830,100);
-	var FichasAz =new  Ficha_Aldeano("AldeanoAzul",870,100);
+	var p1 = new points(125,"ALBERTO",830,300,"AldeanoRojo",5);
+	var p2 = new points(300, "JONA",830,350,"AldeanoAzul",5);
+	var p3 = new points(500, "MORATA",830,400,"AldeanoRojo",5);
 	
-	Game.setBoard(0,p1);
-	Game.setBoard(1,p2);
-	Game.setBoard(2,p3);
-	Game.setBoard(3,FichasR);
-	Game.setBoard(4,FichasAz);
-	Game.setBoard(5,gb);
-	Game.setBoard(6,new carta(card));
+	Game.setBoard(1,gb);
+	Game.setBoard(2,p1);
+	Game.setBoard(3,p2);
+	Game.setBoard(4,p3);
+	Game.setBoard(5,new carta(card));
 }
 
 
 var card = function(){
-	Game.setBoard(7,new NewCard());
+	Game.setBoard(6,new NewCard());
 }
 
-var Ficha_Aldeano = function (aldeano,x,y){
-
-
-	
-	this.draw = function (ctx) {
-		SpriteSheet.draw(Game.ctx,aldeano,x,y,0,true);
-	};
-	
-	this.step = function(){
-
-	};
-
-}
 
 var NewCard = function (){
 
@@ -91,7 +74,7 @@ var NewCard = function (){
 	var ran = Math.floor((Math.random() * 23) + 1);
 	var sp;
 	var cont = 0;
-	var gb = Game.boards[5];
+	var gb = Game.boards[1];
 	var grade = 0;
 	var entro = false;
 
@@ -132,7 +115,8 @@ var NewCard = function (){
 							f.sprite = sp;
 							f.grade = grade;
 							entro = true;
-							Game.setBoard(7,new carta(card));
+
+							Game.setBoard(6,new Colocar(f));
 						}
 					}
 						
@@ -146,7 +130,7 @@ var NewCard = function (){
 }
 	
 
-var points = function(number,name,x,y){
+var points = function(number,name,x,y,sprite,aldes){
 	
 	var num = number;
 	var cont = 0;
@@ -159,43 +143,54 @@ var points = function(number,name,x,y){
 			}
 	};
 
+
 	this.draw = function(ctx) {
 		ctx.fillStyle = "white";
 		ctx.fillRect(x-2,y-20,200,50);
-
 		ctx.fillStyle = "#000000";
 		ctx.font = "20px Verdana";
 		ctx.fillText(name + ": " + num,x,y);
+		
+
+		ctx.fillStyle = "#000000";
+		ctx.font = "20px Verdana";
+		ctx.fillText(aldes,x+180,y);
+		SpriteSheet.draw(Game.ctx,sprite,x+200,y-20,0,true);
     };
 
 }
 
 
-var Colocar_Aldeano = function Colocar_Aldeano(pos,tipo_aldeano,x,y){
 
-	switch(pos % 3){
-		case 1:
-			x = x;   
-			break;
-		case 2:
-		    x = x+30;
-		    break;
-		case 0:
-		    x = x+60;
-			break;
-	}
+var Colocar = function Colocar(obj){
+	var f = obj;
+	var up = false;
 
-	if(pos <= 3)
-		y = y;
-	else if(pos > 3 && pos <= 6)
-		y = y+30;
-	else if(pos > 6)
-		y = y+60;
-	
-	
+	this.step = function() {
+		if(!Game.keys['uno'] && !Game.keys['dos'] && !Game.keys['tres'] && !Game.keys['cuatro'] && !Game.keys['cinco'] && !Game.keys['seis']
+		&& !Game.keys['siete'] && !Game.keys['ocho'] && !Game.keys['nueve'] && !Game.Keys['s']){
+				up = true;
+		}
 
-	SpriteSheet.draw(Game.ctx,tipo_aldeano,x,y,0,true);		
+		
+
+		for(i = 1 ; i < 10; i++){
+			if(up &&  Game.keys[""+ i]){
+				f.pos = i;
+				Game.setBoard(6,new carta(card));
+				up = false;
+			}	
+		}
+
+		
+
+	};
+
+	this.draw = function(ctx) {};
+
 }
+
+
 
 
 $(function() {
