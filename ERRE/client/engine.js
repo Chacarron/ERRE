@@ -117,7 +117,7 @@ TextScreen = function TextScreen(text,x,y,callback) {
 		if(!Game.keys['enter']){ 
 			up = true;
 		}
-		if(up && Game.keys['enter'] && callback){
+		if(up && Game.keys['enter'] && callback && (cont < 2)){
 			cont++;
 			callback();
 		}
