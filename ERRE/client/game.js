@@ -43,7 +43,7 @@ var sprites = {
 
 var startGame = function() {
     
-    Game.setBoard(0,new TextScreen("ERRE GAME(PULSE ENTER)",10,50,playGame));
+    Game.setBoard(0,new TextScreen("ERRE GAME(PULSE ENTER)",50,315,playGame));
   	
 }
 
@@ -57,18 +57,18 @@ var playGame = function() {
 	var FichasR =new  Ficha_Aldeano("AldeanoRojo",830,100);
 	var FichasAz =new  Ficha_Aldeano("AldeanoAzul",870,100);
 	
-	Game.setBoard(0,p1);
-	Game.setBoard(1,p2);
-	Game.setBoard(2,p3);
-	Game.setBoard(3,FichasR);
-	Game.setBoard(4,FichasAz);
-	Game.setBoard(5,gb);
-	Game.setBoard(6,new carta(card));
+	Game.setBoard(1,p1);
+	Game.setBoard(2,p2);
+	Game.setBoard(3,p3);
+	Game.setBoard(4,FichasR);
+	Game.setBoard(5,FichasAz);
+	Game.setBoard(6,gb);
+	Game.setBoard(7,new carta(card));
 }
 
 
 var card = function(){
-	Game.setBoard(7,new NewCard());
+	Game.setBoard(8,new NewCard());
 }
 
 var Ficha_Aldeano = function (aldeano,x,y){
@@ -91,7 +91,7 @@ var NewCard = function (){
 	var ran = Math.floor((Math.random() * 23) + 1);
 	var sp;
 	var cont = 0;
-	var gb = Game.boards[5];
+	var gb = Game.boards[6];
 	var grade = 0;
 	var entro = false;
 
@@ -132,7 +132,7 @@ var NewCard = function (){
 							f.sprite = sp;
 							f.grade = grade;
 							entro = true;
-							Game.setBoard(7,new carta(card));
+							Game.setBoard(8,new carta(card));
 						}
 					}
 						

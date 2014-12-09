@@ -43,7 +43,7 @@ var sprites = {
 
 var startGame = function() {
     
-    Game.setBoard(0,new TextScreen("ERRE GAME(PULSE ENTER)",10,50,playGame));
+    Game.setBoard(0,new TextScreen("ERRE GAME(PULSE ENTER)",50,315,playGame));
   	
 }
 
@@ -132,7 +132,7 @@ var NewCard = function (){
 							f.sprite = sp;
 							f.grade = grade;
 							entro = true;
-							Game.setBoard(6,new carta(card));
+							Game.setBoard(7,new carta(card));
 						}
 					}
 						

@@ -111,19 +111,30 @@ SpriteSheet = new function() {
 TextScreen = function TextScreen(text,x,y,callback) {
     
     var up = false;
-
+	var cont = 0;
+	
     this.step = function() {
-	if(!Game.keys['enter']) up = true;
-	if(up && Game.keys['enter'] && callback) callback();
+		if(!Game.keys['enter']){ 
+			up = true;
+		}
+		if(up && Game.keys['enter'] && callback){
+			cont++;
+			callback();
+		}
     };
 
 
-    
     this.draw = function(ctx) {
-	ctx.fillStyle = "#000000";
-	ctx.font = "65px Verdana";
-	ctx.fillText(text,x,y);
-
+		if(cont == 0){
+			ctx.fillStyle="white";
+			ctx.fillRect(0,0,1000,630);
+			ctx.fillStyle = "#000000";
+			ctx.font = "65px Verdana";
+			ctx.fillText(text,x,y);
+		}else if(cont == 1){
+			ctx.fillStyle="white";
+			ctx.fillRect(0,0,1000,630);
+		}
     };
 };
 
