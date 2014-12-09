@@ -58,7 +58,7 @@ Game = new function() {
 		}
 	}
 
-	setTimeout(Game.loop,20);
+	setTimeout(Game.loop,30);
     };
     
     
@@ -153,9 +153,9 @@ GameBoard = function GameBoard() {
 		if(up && Game.keys['down']){
 			this.scrolly = this.scrolly + 1;
 
-			if(cmp(this.lista_fichas,0,540+(this.scrolly*90))!=1){
-				for(j = 0;j<9;j++){
-					var f = new Ficha(j*90,540+(this.scrolly*90));
+			for(j = 0;j<9;j++){
+				var f = new Ficha(j*90+(this.scrollx*90),540+(this.scrolly*90));
+				if(cmp(this.lista_fichas,f)!=1){
 					this.lista_fichas.push(f);
 				}
 			}
@@ -166,9 +166,9 @@ GameBoard = function GameBoard() {
 		if(up && Game.keys['up']){
 			this.scrolly = this.scrolly - 1;
 
-			if(cmp(this.lista_fichas,0,90+(this.scrolly*90))!=1){
-				for(j = 0;j<9;j++){
-					var f = new Ficha(j*90,90+(this.scrolly*90));
+			for(j = 0;j<9;j++){
+				var f = new Ficha(j*90+(this.scrollx*90),90+(this.scrolly*90));
+				if(cmp(this.lista_fichas,f)!=1){
 					this.lista_fichas.push(f);
 				}
 			}
@@ -181,9 +181,9 @@ GameBoard = function GameBoard() {
 		if(up && Game.keys['right']){
 			this.scrollx = this.scrollx + 1;
 			
-			if(cmp(this.lista_fichas,720+(this.scrollx*90),90)!=1){
-				for(j = 1;j<7;j++){
-					var f = new Ficha(720+(this.scrollx*90),j*90);
+			for(j = 1;j<7;j++){
+				var f = new Ficha(720+(this.scrollx*90),j*90+(this.scrolly*90));
+				if(cmp(this.lista_fichas,f)!=1){
 					this.lista_fichas.push(f);
 				}
 			}
@@ -195,12 +195,13 @@ GameBoard = function GameBoard() {
 		if(up && Game.keys['left']){
 			this.scrollx = this.scrollx - 1;
 
-			if(cmp(this.lista_fichas,0+(this.scrollx*90),90)!=1){
-				for(j = 1;j<7;j++){
-					var f = new Ficha(0+(this.scrollx*90),j*90);
+			for(j = 1;j<7;j++){
+				var f = new Ficha(0+(this.scrollx*90),j*90+(this.scrolly*90));
+				if(cmp(this.lista_fichas,f)!=1){
 					this.lista_fichas.push(f);
 				}
 			}
+	
 
 			up = false;
 		}
@@ -236,9 +237,9 @@ Ficha = function Ficha(x,y) {
 }
 
 
-function cmp(array,x,y){
+function cmp(array,obj){
 	for(i = 0;i<array.length;i++){
-			if( (array[i].x == x) && (array[i].y == y) ){
+			if( (array[i].x == obj.x) && (array[i].y == obj.y) ){
 				return 1;
 			}
 	}
