@@ -132,7 +132,7 @@ TextScreen = function TextScreen(text,x,y,callback) {
 			ctx.fillText(text,x,y);
 		}else if(cont == 1){
 			ctx.fillStyle="white";
-			ctx.fillRect(0,0,1000,630);
+			ctx.fillRect(0,0,1200,630);
 		}
     };
 };
@@ -237,14 +237,19 @@ Ficha = function Ficha(x,y) {
 	this.y = y;
 	this.grade = 0;
 	this.paint = false;
-	this.sprite = "Fondo";
 	this.pos = 0;
 	this.spritea = "AldeanoRojo";
+	this.sprite = "Fondo";
+	this.rejilla = false;
 
 	this.print = function(sx,sy) {
 			SpriteSheet.draw(Game.ctx,this.sprite,this.x-(sx*90),this.y-(sy*90),this.grade,false);
 			if(this.pos != 0){
-				Colocar_Aldeano(this.pos,this.spritea,this.x,this.y);
+				Colocar_Aldeano(this.pos,this.spritea,this.x-(sx*90),this.y-(sy*90));
+			}
+			if(this.rejilla == true){
+				SpriteSheet.draw(Game.ctx,"Rejilla",this.x-(sx*90),this.y-(sy*90),this.grade,false);
+				this.rejilla = false;
 			}
 	};
 
@@ -317,6 +322,14 @@ Colocar_Aldeano = function Colocar_Aldeano(pos,tipo_aldeano,x,y){
 	
 
 	SpriteSheet.draw(Game.ctx,tipo_aldeano,x,y,0,true);		
+}
+
+
+Num_To_Sprite = function Num_To_Sprite(number,x,y){
+	var array = number.toString();
+	for(i = 0; i < array.length; i++){
+		SpriteSheet.draw(Game.ctx,"num"+array[i],x+(i*30),y,0,true);
+	}
 }
 
 
