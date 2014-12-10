@@ -328,8 +328,7 @@ Colocar_Aldeano = function Colocar_Aldeano(pos,tipo_aldeano,x,y){
 Num_To_Sprite = function Num_To_Sprite(number,x,y){
 	var array = number.toString();
 	for(i = 0; i < array.length; i++){
-		console.log(array[i]);
-		SpriteSheet.draw(Game.ctx,"num1",x+(i*30),y,0,true);
+		SpriteSheet.draw(Game.ctx,"num"+array[i],x+(i*30),y,0,true);
 	}
 }
 

@@ -248,7 +248,7 @@ Ficha = function Ficha(x,y) {
 				Colocar_Aldeano(this.pos,this.spritea,this.x-(sx*90),this.y-(sy*90));
 			}
 			if(this.rejilla == true){
-				SpriteSheet.draw(Game.ctx,"Rejilla",this.x-(sx*90),this.y-(sy*90),this.grade,false);
+				SpriteSheet.draw(Game.ctx,"Rejilla",this.x-(sx*90),this.y-(sy*90),0,false);
 				this.rejilla = false;
 			}
 	};

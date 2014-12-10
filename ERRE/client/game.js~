@@ -191,7 +191,7 @@ var points = function(number,name,x,y,sprite,num_alde){
 
 //array = number.toString();
 	this.draw = function(ctx) {
-		ctx.fillStyle = "red";
+		ctx.fillStyle = "white";
 		ctx.fillRect(x-2,y-20,350,50);
 		ctx.fillStyle = "#000000";
 		ctx.font = "20px Verdana";

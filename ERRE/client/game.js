@@ -99,7 +99,7 @@ var playGame = function() {
 	var gb = new GameBoard();
 	var p1 = new points(125,"ALBERTO",830,300,"AldeanoRojo",5);
 	var p2 = new points(300, "JONA",830,350,"AldeanoNegro",5);
-	var p3 = new points(500, "MORATA",830,400,"AldeanoAzul",5);
+	var p3 = new points(997, "MORATA",830,400,"AldeanoAzul",5);
 	
 	Game.setBoard(1,gb);
 	Game.setBoard(2,p1);
