@@ -222,7 +222,7 @@ GameBoard = function GameBoard() {
 	this.draw = function() {
 		for(i = 0 ; i < this.lista_fichas.length ; i++){
 			var f = this.lista_fichas[i];
-			if( (f.x >= 0+(this.scrollx*90))&&(f.x <= 720))&&(f.y >= 90 + (this.scrolly*90))&&(f.y <= 540+(this.scrolly*90))){
+			if( (f.x >= 0+(this.scrollx*90))&&(f.x <= 720+(this.scrollx*90))&&(f.y >= 90+(this.scrolly*90))&&(f.y <= 540+(this.scrolly*90))){
 					f.print(this.scrollx,this.scrolly);
 			}
 		}
@@ -281,7 +281,7 @@ carta = function carta(callback) {
 				mX = e.pageX;
 				mY = e.pageY;
 
-				if( (mX>=that.x) && (mX<=that.x+90) && (mY>=that.y) && (mY<=that.y+90) ){
+				if( (mX-100>=that.x) && (mX-100<=that.x+90) && (mY-100>=that.y) && (mY-100<=that.y+90) ){
 					up = true;
 					if(up  && callback) callback();
 				}

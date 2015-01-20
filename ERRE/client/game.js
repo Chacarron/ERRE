@@ -134,8 +134,8 @@ var NewCard = function (){
 	}
 	
 
-	this.x = 850;////////////////////
-	this.y = 530;/////////////////
+	this.x = 850;
+	this.y = 530;
 
     this.draw = function(ctx) {
 		SpriteSheet.draw(Game.ctx,sp,this.x,this.y,grade);
@@ -149,10 +149,10 @@ var NewCard = function (){
 				mX = e.pageX;
 				mY = e.pageY;
 
-				cX = Math.floor((mX)/90);
-				cY = Math.floor((mY)/90);
+				cX = Math.floor((mX-100)/90);
+				cY = Math.floor((mY-100)/90);
 	
-				if((mX < 850) && (mY > 90) && (entro == false)){
+				if((mX > 100) && (mX < 910) && (mY > 190) && (mY < 730) && (entro == false)){
 
 					for(i = 0 ; i < gb.lista_fichas.length ; i++){
 						var f = gb.lista_fichas[i];
@@ -172,6 +172,7 @@ var NewCard = function (){
 			}
 		}
     };									
+
 }
 	
 
