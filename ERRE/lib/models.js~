@@ -1,0 +1,1 @@
+players = new Meteor.Collection('players');
