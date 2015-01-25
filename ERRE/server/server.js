@@ -3,7 +3,6 @@ Meteor.publish("all_players", function () {
 });
 
 
-
 Players.allow({
    insert: function(userId, u){
       return true;
@@ -15,8 +14,18 @@ Players.allow({
 
 Meteor.startup(function() {
 
+
+var ids = [];
+var usuarios = Meteor.users.find();
+
+usuarios.forEach(function(x){
+	var cont = 0;
+	ids[cont] = x._id;
+	cont++;
+ });
+
    Players.insert({
-      empezar: false,
+      turno: ids[0],
       ficha: null,
       fx: 0,
       fy: 0,
@@ -24,4 +33,7 @@ Meteor.startup(function() {
       score: 0,
       fin: false
    });
+
+
+	
 });

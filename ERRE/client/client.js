@@ -4,13 +4,13 @@ Meteor.subscribe("all_players");
 var update = null;
 Tracker.autorun(function(){
   update = Players.find();
-   console.log(update);
 
-   update.forEach(function(x){
-      console.log("entro");
-      console.log(x.u);
-   });
-   console.log("salgo");
+  update.forEach(function(x){
+		if(x.turno == Meteor.userId()){
+     		console.log("ES MI TURNO");
+		}
+  });
+
 });
 
 /***********
@@ -20,12 +20,8 @@ Tracker.autorun(function(){
 Meteor.startup(function () {
 
    console.log("arrancando startup");
-   console.log(Meteor.userId());
-   var player = Players.findOne({
-         userId:"Pepito",
-         u:"2"
-   });
-   console.log(player.u);
+ 
+   
 });
 
 Accounts.ui.config({

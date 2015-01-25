@@ -1,1 +1,2 @@
-players = new Meteor.Collection('players');
+Players = new Meteor.Collection('players');
+Turno = new Meteor.Collection('turno');
